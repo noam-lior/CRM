@@ -8,6 +8,7 @@ import Clients from '../Clients/Clients'
 import Actions from '../Actions/Actions'
 import Analytics from '../Analytics/Analytics'
 
+ 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -33,21 +34,15 @@ export default function NavBar(props) {
           </Toolbar>
         </AppBar>
         <Route path="/clients" exact render={() =>
-          <Clients data={props.data} />}>
+          <Clients />}>
         </Route>
 
         <Route path="/actions" exact render={() =>
-          <Actions owners={props.owners}
-            emailTypes={props.emailTypes}
-            updateClientAction={props.updateClientAction}
-            addNewClient={props.addNewClient} />}>
+          <Actions />}>
         </Route>
 
         <Route path="/analytics" exact render={() =>
-           <Analytics
-           getMonthsNewClient={props.getMonthsNewClient}
-           emailsSent={props.emailsSent}
-           />}>
+           <Analytics/>}>
 
            </Route>
 

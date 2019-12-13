@@ -1,22 +1,28 @@
 import React, { Component } from 'react'
 import CustomizedTables from '../Table/Table'
 import SimpleModal from '../Modal/Modal'
+import { observer, inject } from 'mobx-react'
+
+@inject("ClientsStore")
+@observer
 class Clients extends Component {
     constructor() {
         super()
         this.state = {
             filteredClients: [],
             term: "",
-            currentClientID:""
+            currentClientID:"",
+            field:"name"
         }
 
     }
     componentWillMount() {
-        this.setState({ filteredClients: this.props.data })
+        this.setState({ filteredClients: this.props.ClientsStore.data })
     }
 
-    handleRowClick = (id) => {
-        this.setState({ currentClientID: id })
+    handleRowClick = async (id) => {
+        await this.setState({ currentClientID: id })
+        console.log(this.state)
     }
 
     handleUpdate = (newName, newSurname, newCountry)=>{
@@ -24,23 +30,27 @@ class Clients extends Component {
         this.props.updateClient(currentClientID,newName,newSurname,newCountry)
     }
 
+    handleSelection=e=>{
+        this.setState({field:e.target.value})
+    }
     handleChange = e => {
         const value = e.target.value.toLowerCase()
-        const clients = this.props.data
+        const clients = this.props.ClientsStore.data
         let filteredClients
         if (value === "")
             filteredClients = clients
         else
-            filteredClients = clients.filter(c => c.name.toLowerCase().startsWith(value))
+            filteredClients = clients.filter(c => c[this.state.field].toLowerCase().startsWith(value))
         this.setState({ filteredClients, term: value })
     }
     render() {
         const filteredClients = this.state.filteredClients
+        const fields=["name","surname","country","firstContact","emailType","sold","owner"]
         return (
             <div>
                 search: <input onChange={this.handleChange} value={this.state.term}></input>
-                <select placeholder="Name">{filteredClients.map(c => <option>{c.name}</option>)}</select>
-                <CustomizedTables clients={this.state.filteredClients} handleRowClick={this.handleRowClick} />
+                <select placeholder="Name" onChange={this.handleSelection}>{fields.map(f => <option>{f}</option>)} </select>
+                <CustomizedTables clients={filteredClients} handleRowClick={this.handleRowClick} />
                 {/* <SimpleModal currentClient={filteredClients[0]} handleUpdate={this.handleUpdate} /> */}
             </div>
         )

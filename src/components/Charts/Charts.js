@@ -1,10 +1,11 @@
 import React from 'react'
-
+import TopEmployees from '../TopEmployees/TopEmployees'
+import SalesByCategory from  '../SalesByCategory/SalesByCategory'
 function Charts(){
     return (
         <div>
-           {/* <TopEmployers/> */}
-           {/* <SalesByCountry/> */}
+           <TopEmployees/>
+           <SalesByCategory/>
            {/* <SalesSince/> */}
            {/* <ClientAcquisition/> */}
         </div>

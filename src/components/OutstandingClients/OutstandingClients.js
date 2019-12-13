@@ -1,17 +1,23 @@
-import React from 'react'
-import moment from 'moment'
+import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { observer, inject } from 'mobx-react'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
-function NewClients(props){
+@inject("ClientsStore")
+@observer
 
-    const clients=props.getOutstandingClients()
-    return(
-        <div>
-            <FontAwesomeIcon icon={["fas","fa-chart-line"]} />
-            <span>clients</span>
-            <p>new {month} clients</p>
-        </div>
-    )
+class OutstandingClients extends Component {
+    render() {
+        const outstandingClients = this.props.ClientsStore.outstandingClients
+        return (
+            <div>
+                <FontAwesomeIcon icon={faUser} />
+                <span>{outstandingClients}</span>
+                <p>Outstanding Clients</p>
+            </div>
+        )
+    }
+
 }
 
-export default NewClients
+export default OutstandingClients

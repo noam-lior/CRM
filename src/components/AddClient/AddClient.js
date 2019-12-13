@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
+import { observer, inject } from 'mobx-react'
 
+@inject("ClientsStore")
+@observer
 class AddClient extends Component{
     addClient(){
         const name=document.getElementById("name-input").value
@@ -12,7 +15,7 @@ class AddClient extends Component{
         const sold=false;
 
         const newClient={name,surname,country,owner,firstContact,sold,email,emailType}
-        this.props.addNewClient(newClient)
+        this.props.ClientsStore.addNewClient(newClient)
     }
     render(){
         return (<div>

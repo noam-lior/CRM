@@ -37,26 +37,26 @@ const useStyles = makeStyles({
 
 
 export default function CustomizedTables(props) {
-    const handleClick=(e)=>{
+    const handleClick = (e) => {
         props.handleRowClick(e.target)
     }
     const classes = useStyles();
     const clients = props.clients
-    const columns=["Name","Surname","Country","First Contact","Email","Sold","Owner"]
-    const keys=["name","surname","country","firstContact","emailType","sold","owner"]
+    const columns = ["Name", "Surname", "Country", "First Contact", "Email", "Sold", "Owner"]
+    const keys = ["name", "surname", "country", "firstContact", "emailType", "sold", "owner"]
     return (
         <Paper className={classes.root}>
             <Table className={classes.table} aria-label="customized table">
                 <TableHead>
                     <TableRow>
-                        {columns.map(c=><StyledTableCell align="left">{c}</StyledTableCell>)}
+                        {columns.map(c => <StyledTableCell align="left">{c}</StyledTableCell>)}
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {clients.map(row => (
-                        <StyledTableRow key={row._id} onClick={handleClick}>
-                            {keys.map(key=><StyledTableCell align="left"> {row[key]} </StyledTableCell>)}
-                        </StyledTableRow>
+                            <StyledTableRow id={row._id} onClick={handleClick}>
+                                {keys.map(key => <StyledTableCell align="left"> {row[key]} </StyledTableCell>)}
+                            </StyledTableRow>
                     ))}
                 </TableBody>
             </Table>

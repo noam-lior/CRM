@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { observer, inject } from 'mobx-react'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
-function NewClients(props){
-    const emailsSent=props.getEmailsSent()
-    return(
-        <div>
-            <FontAwesomeIcon icon={["far","fa-envelope"]} />
-            <span>{emailsSent}</span>
-            <p>Emails Sent</p>
-        </div>
-    )
+@inject("ClientsStore")
+@observer
+class EmailsSent extends Component {
+    render() {
+        const emailsSent = this.props.ClientsStore.emailsSent
+        return (
+            <div>
+                <FontAwesomeIcon icon={faEnvelope} />
+                <span>{emailsSent}</span>
+                <p>Emails Sent</p>
+            </div>
+        )
+    }
+
 }
 
-export default NewClients
+export default EmailsSent
