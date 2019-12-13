@@ -4,10 +4,13 @@ import Charts from '../Charts/Charts'
 function Analytics(props) {
     return (
         <div>
-            <Badges />
+            <Badges
+                getMonthsNewClient={props.getMonthsNewClient}
+                emailsSent={props.emailsSent} />
             <Charts />
         </div>
     )
+
 }
 
 export default Analytics

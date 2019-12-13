@@ -3,12 +3,12 @@ import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function NewClients(props){
-    const date=moment().format('LLLL')
-    const month=date.split(" ")[1]
+
+    const clients=props.getOutstandingClients()
     return(
         <div>
             <FontAwesomeIcon icon={["fas","fa-chart-line"]} />
-            <span>{props.monthsNewClients}</span>
+            <span>clients</span>
             <p>new {month} clients</p>
         </div>
     )

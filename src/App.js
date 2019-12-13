@@ -21,22 +21,24 @@ class App extends Component {
       this.formatDates(data)
       const owners=this.filterDuplicates(data,"owner")
       const emailTypes=this.filterDuplicates(data,"emailType")
-      const monthsNewClients=this.getMonthsNewClients(data)
       this.setState({ data,owners,emailTypes,monthsNewClients })
     }, 100)
   }
 
-  getMonthsNewClients(data){
+  getMonthsNewClients(){
+    const data=this.state.data
     const currentMonth=moment().month()
     const currentYear=moment().year()
     const clientsArray=data.filter(d=> moment(d.firstContact).month()==currentMonth && moment(d.firstContact).year()==currentYear)
     const newClients=clientsArray.length
-    return newClients
+    this.setState({monthsNewClients:newClients})
   }
 
-  emailsSent=(data)=>
+  emailsSent=()=>
   {
-    return data.filter(d=>d.emailType).length
+    const data=this.state.data
+    const emailsSent=data.filter(d=>d.emailType).length
+    this.setState({emailsSent})
   }
 
   
@@ -91,7 +93,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar data={this.state.data} owners={this.state.owners} emailTypes={this.state.emailTypes} updateClientAction={this.updateClientAction} addNewClient={this.addNewClient}/>
+        <NavBar data={this.state.data} owners={this.state.owners} emailTypes={this.state.emailTypes}
+         updateClientAction={this.updateClientAction} addNewClient={this.addNewClient}
+         getMonthsNewClients={this.getMonthsNewClients} emailsSent={this.emailsSent}
+          />
       </div>
     )
   }

@@ -44,7 +44,10 @@ export default function NavBar(props) {
         </Route>
 
         <Route path="/analytics" exact render={() =>
-           <Analytics />}>
+           <Analytics
+           getMonthsNewClient={props.getMonthsNewClient}
+           emailsSent={props.emailsSent}
+           />}>
 
            </Route>
 
