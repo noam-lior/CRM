@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import HorizontalBarChart from '../HorizontalBarChart/HorizontalBarChart'
+import HorizontalBarChart from '../Charts/HorizontalBarChart/HorizontalBarChart'
 @inject("ClientsStore")
 @observer
 class TopEmployees extends Component {
     render() {
+        const analytics=this.props.ClientsStore.analytics
         return (
-            <div>
+            <div id="top-employees">
                 <span>Top Employees</span>
-                {/* data={this.props.topThreeEmployees} */}
-                <HorizontalBarChart  />
+                <HorizontalBarChart  data={analytics.topEmployees}/>
             </div>
         )
     }

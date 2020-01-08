@@ -26,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar/>
+        <NavBar handleClick={this.handleClick}/>
       </div>
     )
   }

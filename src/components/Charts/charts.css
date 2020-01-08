@@ -1,0 +1,13 @@
+#charts{
+    display:grid;
+    grid-template-areas:"hb vb" "lc pc";
+    grid-template-rows: 1fr 1fr;
+}
+
+#top-employees{
+    grid-area:hb
+}
+
+#sales-by-category{
+    grid-area:vb
+}

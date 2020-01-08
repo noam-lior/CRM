@@ -1,13 +1,18 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Badges from '../Badges/Badges'
 import Charts from '../Charts/Charts'
-function Analytics(props) {
+import './analytics.css'
+import { observer, inject } from 'mobx-react'
+@inject("ClientsStore")
+@observer
+class Analytics extends Component{
+    render(){
     return (
-        <div>
+        <div id="analytics">
             <Badges  />
             <Charts />
         </div>
-    )
+    )}
 
 }
 

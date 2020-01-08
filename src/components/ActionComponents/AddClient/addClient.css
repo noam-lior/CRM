@@ -1,0 +1,62 @@
+input{
+    border-top: none;
+    border-left:none;
+    border-right:none;
+}
+
+
+#add-client-grid{
+    display:grid;
+    grid-template-areas: "nl n" "sl s" "cl c" "ol o" "el e";
+    grid-template-columns:100px 150px;
+    grid-row-gap: 10px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+#name-label{
+    grid-area:nl;
+}
+
+#name-input{
+    grid-area:n;
+}
+
+#surname-label{
+    grid-area:sl;
+}
+
+#surname-input{
+    grid-area:s;
+}
+
+#country-label{
+    grid-area:cl;
+}
+
+#country-input{
+    grid-area:c;
+}
+
+#owner-label{
+    grid-area:ol;
+}
+
+#owner-input{
+    grid-area:o;
+}
+
+#email-label{
+    grid-area:el;
+}
+
+#email-input{
+    grid-area:e;
+}
+
+#add-client-button{
+    color:black;
+    background-color:#F7CE3E;
+    padding:10px;
+    width:220px;
+}

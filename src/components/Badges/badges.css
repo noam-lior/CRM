@@ -1,0 +1,22 @@
+#badges{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    margin:10px
+}
+
+#outstanding-clients-icon{
+    background-color:red
+}
+
+#emails-sent-icon{
+    background-color:#3498DB
+}
+
+#new-clients-icon{
+    background-color: #31CA72;
+}
+
+#hottest-country-icon{
+    background-color: #F1C40F;
+}

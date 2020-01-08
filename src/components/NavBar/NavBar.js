@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Clients from '../Clients/Clients'
-import Actions from '../Actions/Actions'
+import Actions from '../ActionComponents/Actions/Actions'
 import Analytics from '../Analytics/Analytics'
 
  
@@ -30,7 +30,7 @@ export default function NavBar(props) {
           <Toolbar>
             <Button color="inherit"><Link to="/clients">Clients</Link></Button>
             <Button color="inherit"><Link to="/actions">Actions</Link></Button>
-            <Button color="inherit"><Link to="/analytics">analytics</Link></Button>
+            <Button color="inherit"><Link to="/analytics" onClick={props.handleClick}>analytics</Link></Button>
           </Toolbar>
         </AppBar>
         <Route path="/clients" exact render={() =>

@@ -1,0 +1,17 @@
+#actions{
+    display:grid;
+    grid-template-areas: 'uc' 'ac';
+    grid-row-gap: 20px;
+    grid-row:1fr 1fr;
+}
+
+#update{
+    grid-area:uc;
+    border-bottom:solid 0.5px gray ;
+    padding:20px;
+}
+
+#add-client{
+    grid-area:ac;
+    padding:20px;
+}

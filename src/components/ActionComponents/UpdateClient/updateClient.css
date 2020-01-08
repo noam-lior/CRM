@@ -1,0 +1,67 @@
+
+input, select{
+    width:120px
+}
+
+button{
+    color:#F7CE3E;
+    font-weight:bold;
+    background-color:white;
+    border:none;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+#update-title{
+    padding:20px;
+    position:relative;
+    top:10px
+}
+#update{
+    display:grid;
+    grid-template-areas: "cn . ." "ol os ob" "el es eb" "sl . sb";
+    grid-template-rows: repeat(3,1fr);
+    grid-template-columns:200px 120px 10vw;
+    grid-row-gap: 10px;
+}
+
+#client-input{
+    margin-left:20px
+}
+#client-name{
+    grid-area: cn
+}
+
+#owner-label{
+    grid-area:ol
+}
+
+#owner-selector{
+    grid-area:os
+}
+
+#owner-button{
+    grid-area:ob
+}
+
+#email-label{
+    grid-area:el
+}
+
+#email-selector{
+    grid-area:es
+}
+
+#email-button{
+    grid-area:eb
+}
+
+#sold-label{
+    grid-area:sl
+}
+
+#sold-button{
+    grid-area:sb
+}

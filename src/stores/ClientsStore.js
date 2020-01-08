@@ -1,41 +1,56 @@
+import React from 'react'
 import { observable, action, computed } from 'mobx'
 import moment from 'moment'
+import axios from 'axios'
 export class ClientsStore {
     @observable data
-
+    @observable analytics
     @computed get owners() { return this.filterDuplicates("owner") }
     @computed get emailTypes() { return this.filterDuplicates("emailType") }
-    @computed get monthsNewClients() {
-        const currentMonth = moment().month()
-        const currentYear = moment().year()
-        const clientsArray = this.data.filter(d =>
-            moment(d.firstContact).month() == currentMonth && moment(d.firstContact).year() == currentYear)
-        const newClients = clientsArray.length
-        return newClients
-    }
+    // @computed get monthsNewClients() {
+    //     const currentMonth = moment().month()
+    //     const currentYear = moment().year()
+    //     const clientsArray = this.data.filter(d =>
+    //         moment(d.firstContact).month() == currentMonth && moment(d.firstContact).year() == currentYear)
+    //     const newClients = clientsArray.length
+    //     return newClients
+    // }
 
-    @computed get emailsSent() {
-        return this.data.filter(d => d.emailType).length
-    }
+    // @computed get emailsSent() {
+    //     return this.data.filter(d => d.emailType).length
+    // }
 
 
     // @computed get hottestCountry(){
-        
+
     // }
 
     @action loadData() {
-        this.data = require('../data.json')
+        const data = require('../data.json')//  transfer to SQL
+        this.data = data
         this.separateFullName()
         this.formatDates()
+        this.loadAnalytics()
     }
 
-    @action updateClientAction = (name, surname, field, value) => {
-        const currentClientIndex = this.data.findIndex(c => c.name === name && c.surname === surname)
-        this.data[currentClientIndex][field] = value
+    @action updateClientAction = async (name, surname, field, value) => {
+
+        try {
+            const body = { name: `${name} ${surname}`, surname, field, value }
+            await axios.put('http://localhost:8990/updateClient', body)
+            const currentClientIndex = this.data.findIndex(c => c.name === name && c.surname === surname)
+            this.data[currentClientIndex][field] = value
+        }
+        catch (e) { console.log("invalid input") }
     }
 
     @action addNewClient = (newClient) => {
-        this.data.push(newClient)
+        axios.post('http://localhost:8990/add-client', newClient)
+    }
+
+    @action loadAnalytics = async () => {
+        let data = await axios.get('http://localhost:8990/analytics')
+        this.analytics = data.data;
     }
 
     separateFullName() {
@@ -64,9 +79,5 @@ export class ClientsStore {
                 duplicateTracker[registry[`${field}`]] = 1
         return Object.keys(duplicateTracker)
     }
-
-
-
-
 }
 

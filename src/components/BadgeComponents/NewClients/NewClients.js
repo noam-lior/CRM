@@ -11,7 +11,7 @@ class NewClients extends Component {
         const date = moment().format('LLLL')
         const month = date.split(" ")[1]
         return (
-            <div>
+            <div id="new-clients">
                 <FontAwesomeIcon icon={faChartLine}/>
                 <span>{this.props.ClientsStore.monthsNewClients}</span>
                 <p>new {month} clients</p>

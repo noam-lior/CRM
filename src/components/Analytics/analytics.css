@@ -1,0 +1,13 @@
+#analytics{
+    display:grid;
+    grid-template-areas: 'b' 'c';
+    grid-row-gap: 20px;
+    grid-row:1fr 1fr;
+}
+
+#badges{
+    grid-area:b;
+}
+#charts{
+    grid-area:c;
+}

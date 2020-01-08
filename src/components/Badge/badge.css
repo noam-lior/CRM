@@ -1,0 +1,28 @@
+.svg-inline--fa.fa-w-16{
+    font-size:48px;
+    color:white;
+    padding:10px;
+}
+
+.icon-container{
+    border-radius:50px;
+    width:70px;
+    grid-area:ic;
+}
+
+.badge{
+    display:grid;
+    grid-template-areas:" ic in";
+    grid-template-rows: 70px 1fr;
+    grid-template-columns:90px 1fr;
+    grid-column-gap:10px
+}
+
+.badge-info{
+    grid-area:in
+}
+.badge-value{
+    font-size:28px
+}
+
+

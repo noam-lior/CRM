@@ -9,8 +9,10 @@ const data = [
 ];
 
 function HorizontalBarChart(props) {
+  const height=150;
+  const width=500;
   return (
-    <BarChart width={500} height={100} data={data} layout="vertical">
+    <BarChart width={width} height={height} data={data} layout="vertical">
       <XAxis type="number" hide />
       <YAxis type="category" hide />
       <Bar background label dataKey="foo" fill="#8884d8" />
